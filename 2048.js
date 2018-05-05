@@ -46,7 +46,7 @@ window.onload=function(){
 }
 $(window).keydown(function(e){
 	let key=e.originalEvent.key.toLowerCase();
-	let a=0;
+	let a=2;
 	switch (key) {
 		case 'up':
 		case 'arrowup':
@@ -69,12 +69,12 @@ $(window).keydown(function(e){
 			a=1;
 			break;
 	}
-	if(!a)
-	rand1();
+	if(a!=1)
+	rand1(a);
 })
 
 function up(){
-	var a=1;
+	var a=2;
 	for(var i = 0; i<x;i++)
 	{
 		for(var j=0;j<x-1;j++)
@@ -114,7 +114,7 @@ function up(){
 	return a;
 }
 function right(){
-	var a=1;
+	var a=2;
 	for(var i=x-1;i<=x*x-1;i=i+x)
 	{
 		for(var j=0;j<x;j++)
@@ -155,7 +155,7 @@ function right(){
 	return a;
 }
 function down(){
-	var a=1;
+	var a=2;
 	for(var i = 0; i<x;i++)
 	{
 		for(var j=0;j<x;j++)
@@ -195,7 +195,7 @@ function down(){
 	return a;
 }
 function left(){
-	var a=1;
+	var a=2;
 	for(var i=0;i<=x*(x-1);i=i+x)
 	{
 		for(var j=0;j<x;j++)
@@ -236,7 +236,7 @@ function left(){
 	return a;
 }
 
-function rand1(){
+function rand1(u){
 	var src=[],len,judge=0;
 	for(var i=0;i<x*x;i++)
 	{
@@ -254,11 +254,16 @@ function rand1(){
 			if(judge1(a,i-1)) judge=1;
 	}
 	len=src.length;
-	if(!len&&!judge)
+	console.log(u,len,judge,src);
+	if(len!=1&&!judge)
 		end();
-	let a=Math.floor(len*Math.random());
-	$('.key').eq(src[a]).children().text(2);
-	$('.key').eq(src[a]).css('background',color(Number($('.key').eq(src[a]).children().text())));
+	if(u!=2)
+	{
+		let a=Math.floor(len*Math.random());
+		$('.key').eq(src[a]).children().text(2);
+		$('.key').eq(src[a]).css('background',color(Number($('.key').eq(src[a]).children().text())));
+	}
+	
 }
 
 function judge1(tar,judge){
