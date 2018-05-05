@@ -22,8 +22,10 @@ window.onload=function(){
 	rand1();
 	$('.ch').click(function(){
 		let a=Number($('.input>input').val());
+		x=a;
 		if(a>1&&a<7)
 		{
+			x=a;
 			$('.body').html('');
 			for(let i=1;i<=a*a;i++)
 				$('.body').append('<div class="box"><div class="key"><scan></scan></div></div> ');
@@ -36,9 +38,10 @@ window.onload=function(){
 				'height':86/a+'%',
 				'margin-top':10/(a+1)+'%'
 			})
+		rand1();
+		rand1();
 		}
-		rand1();
-		rand1();
+		
 	})
 }
 $(window).keydown(function(e){
@@ -67,6 +70,7 @@ $(window).keydown(function(e){
 })
 
 function up(){
+	console.log(x);
 	for(var i = 0; i<x;i++)
 	{
 		for(var j=0;j<x-1;j++)
