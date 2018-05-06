@@ -8,7 +8,7 @@ window.onload=function(){
 		$('.all').addClass('en');
 	})
 	for(let i=1;i<=x*x;i++)
-		$('.body').append('<div class="box"><div class="key"><scan></scan></div></div> ');
+		$('.body').append('<div class="box"><div class="key"><span></span></div></div> ');
 	$('.body').css({
 		'width':x*125+'px',
 		'height':x*125+'px'
@@ -26,9 +26,11 @@ window.onload=function(){
 		if(a>1&&a<7)
 		{
 			x=a;
+			num=0;
+			change(num);
 			$('.body').html('');
 			for(let i=1;i<=a*a;i++)
-				$('.body').append('<div class="box"><div class="key"><scan></scan></div></div> ');
+				$('.body').append('<div class="box"><div class="key"><span></span></div></div> ');
 			$('.body').css({
 				'width':a*125+'px',
 				'height':a*125+'px'
