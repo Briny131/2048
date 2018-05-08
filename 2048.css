@@ -35,7 +35,7 @@
 	text-align: center;
 	position: relative;
 	z-index: 10;
-	
+	border-radius: 15px;
 }
 .key>span{
 	display: inline-block;
@@ -46,6 +46,7 @@
 	width: 100%;
 	height: 100%;
 	position: absolute;
+	border-radius: 15px;
 	z-index: 20;
 }
 .num{
