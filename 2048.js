@@ -15,8 +15,8 @@ window.onload=function(){
 	})
 	$('.box').css({
 		'width':86/x+'%',
-		'height':86/x+'%',
-		'margin-top':10/(x+1)+'%'
+		'height':86/x+'%'
+		//'margin-top':10/(x+1)+'%'
 	})
 	rand1();
 	rand1();
@@ -45,25 +45,27 @@ window.onload=function(){
 		}
 		
 	})
+	$('.ui').eq(0).animate({
+		'left':'30px'
+	},1000);
+
 }
+
+
 $(window).keydown(function(e){
-	let key=e.originalEvent.key.toLowerCase();
+	let key=Number(e.originalEvent.keyCode);
 	let a=2;
 	switch (key) {
-		case 'up':
-		case 'arrowup':
+		case 38:
 			a=up();
 			break;
-		case 'right':
-		case 'arrowright':
+		case 39:
 			a=right();
 			break;
-		case 'down':
-		case 'arrowdown':
+		case 40:
 			a=down();
 			break;
-		case 'left':
-		case 'arrowleft':
+		case 37:
 			a=left();
 			break;
 		default:
@@ -77,12 +79,12 @@ $(window).keydown(function(e){
 
 function up(){
 	var a=2;
-	for(var i = 0; i<x;i++)
+	for(let i = 0; i<x;i++)
 	{
-		for(var j=0;j<x-1;j++)
+		for(let j=0;j<x-1;j++)
 		{
 			var va=$('.key').eq(i+j*x).children().text();
-			for(var z=j+1;z<x;z++)
+			for(let z=j+1;z<x;z++)
 			{
 				var te=$('.key').eq(i+z*x).children().text();
 				if(te=='') continue;
@@ -117,12 +119,12 @@ function up(){
 }
 function right(){
 	var a=2;
-	for(var i=x-1;i<=x*x-1;i=i+x)
+	for(let i=x-1;i<=x*x-1;i=i+x)
 	{
-		for(var j=0;j<x;j++)
+		for(let j=0;j<x;j++)
 		{
 			var va=$('.key').eq(i-j).children().text();
-			for(var z=j+1;z<x;z++)
+			for(let z=j+1;z<x;z++)
 			{
 				var te=$('.key').eq(i-z).children().text();
 				if(te=='') continue;
@@ -130,6 +132,23 @@ function right(){
 				{
 					if(te!=''){
 						va=te;
+						/*//移动动画
+						
+						$('.key').eq(i-z).animate({
+							'left':107*(z-j)+'px'
+							},300,function(){
+								console.log(z-j);
+								$(this).animate({
+									'left':0
+								},0,function(){
+									console.log(i,j);
+									$('.key').eq(i-j).children().text(Number(te));
+									$('.key').eq(i-z).children().text('');
+								})
+							});
+						
+						//移动动画*/
+
 						$('.key').eq(i-j).children().text(Number(te));
 						$('.key').eq(i-z).children().text('');
 						a=0;
@@ -158,12 +177,12 @@ function right(){
 }
 function down(){
 	var a=2;
-	for(var i = 0; i<x;i++)
+	for(let i = 0; i<x;i++)
 	{
-		for(var j=0;j<x;j++)
+		for(let j=0;j<x;j++)
 		{
 			var va=$('.key').eq(i+(x-1-j)*x).children().text();
-			for(var z=j+1;z<x;z++)
+			for(let z=j+1;z<x;z++)
 			{
 				var te=$('.key').eq(i+(x-1-z)*x).children().text();
 				if(te=='') continue;
@@ -198,12 +217,12 @@ function down(){
 }
 function left(){
 	var a=2;
-	for(var i=0;i<=x*(x-1);i=i+x)
+	for(let i=0;i<=x*(x-1);i=i+x)
 	{
-		for(var j=0;j<x;j++)
+		for(let j=0;j<x;j++)
 		{
 			var va=$('.key').eq(i+j).children().text();
-			for(var z=j+1;z<x;z++)
+			for(let z=j+1;z<x;z++)
 			{
 				var te=$('.key').eq(i+z).children().text();
 				if(te=='') continue;
@@ -262,10 +281,26 @@ function rand1(u){
 	if(u!=2)
 	{
 		let a=Math.floor(len*Math.random());
-		$('.key').eq(src[a]).children().text(2);
-		$('.key').eq(src[a]).css('background',color(Number($('.key').eq(src[a]).children().text())));
-	}
-	
+		setTimeout(donghua1(a,src),0);
+	}	
+}
+
+function donghua1(a,src){
+	$('.key').eq(src[a]).animate({
+			'top':'50%',
+			'left':'50%',
+			'width':0,
+			'height':0
+		},0,function(){
+			$(this).children().text(2);
+			$(this).css('background',color(2));
+			$(this).animate({
+				'top':0,
+				'left':0,
+				'width':'100%',
+				'height':'100%'
+			},300)
+		});
 }
 
 function judge1(tar,judge){
