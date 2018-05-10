@@ -276,7 +276,7 @@ function rand1(u){
 	}
 	len=src.length;
 	console.log(u,len,judge,src);
-	if(len!=1&&!judge)
+	if(!len&&!judge)
 		end();
 	if(u!=2)
 	{
@@ -299,7 +299,7 @@ function donghua1(a,src){
 				'left':0,
 				'width':'100%',
 				'height':'100%'
-			},300)
+			},200)
 		});
 }
 
@@ -363,7 +363,7 @@ function donghua(ele){
 			height:'100%',
 			left:0,
 			top:0
-		},500);
+		},300);
 	});
 }
 
